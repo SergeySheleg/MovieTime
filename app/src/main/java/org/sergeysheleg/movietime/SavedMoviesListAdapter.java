@@ -11,20 +11,15 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-public class FoundedMoviesListAdapter extends BaseAdapter {
+public class SavedMoviesListAdapter extends BaseAdapter {
     Context context;
     LayoutInflater layoutInflater;
-    ArrayList<FoundedMovie> movies;
+    ArrayList<SavedMovie> movies;
 
-    public FoundedMoviesListAdapter(Context context,
-                                    ArrayList<FoundedMovie> movies) {
+    public SavedMoviesListAdapter(Context context, ArrayList<SavedMovie> movies) {
         this.context = context;
         this.movies = movies;
         this.layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    }
-
-    public void setMovies(ArrayList<FoundedMovie> movies) {
-        this.movies = movies;
     }
 
     @Override
@@ -46,15 +41,17 @@ public class FoundedMoviesListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
         if(view == null) {
-            view = layoutInflater.inflate(R.layout.founded_movies_list_item, parent, false);
+            view = layoutInflater.inflate(R.layout.saved_movies_list_item, parent, false);
         }
 
-        FoundedMovie movie = (FoundedMovie) getItem(position);
+        SavedMovie movie = (SavedMovie) getItem(position);
 
-        ((TextView) view.findViewById(R.id.foundedMovieTitle)).setText(movie.getTitle());
-        ((TextView) view.findViewById(R.id.foundedMovieYear)).setText(movie.getYear());
-        ((ImageView) view.findViewById(R.id.foundedMoviePoster)).setImageBitmap(movie.getPosterBitmap());
+        ((TextView) view.findViewById(R.id.savedMovieTitle)).setText(movie.getTitle());
+        ((TextView) view.findViewById(R.id.savedMovieGenre)).setText(movie.getGenre());
+        ((TextView) view.findViewById(R.id.savedMovieYear)).setText(movie.getYear());
+        ((TextView) view.findViewById(R.id.savedMovieIMDbRating)).setText(movie.getIMDbRating());
+        ((TextView) view.findViewById(R.id.savedMovieUserRating)).setText(String.valueOf(movie.getUserRating()));
+        ((ImageView) view.findViewById(R.id.savedMoviePoster)).setImageBitmap(movie.getPosterBitmap());
         return view;
     }
 }
-

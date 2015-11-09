@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Movie Title"
+        android:id="@+id/aboutMovieTitle"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:id="@+id/aboutMoviePoster"
+        android:src="@drawable/no_poster"
+        android:layout_below="@+id/aboutMovieYear"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Genre"
+        android:id="@+id/aboutMovieGenre"
+        android:layout_below="@+id/aboutMoviePoster"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Director"
+        android:id="@+id/aboutMovieDirector"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/aboutMovieGenre" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/aboutMovieUserRating"
+        android:numStars="5"
+        android:rating="2.6"
+        android:stepSize="0.1"
+        android:layout_below="@+id/aboutMovieIMDbRating"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:layout_width="350dp"
+        android:layout_height="fill_parent"
+        android:text="Movie Plot"
+        android:id="@+id/aboutMoviePlot"
+        android:layout_below="@+id/aboutMovieUserRating"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="year"
+        android:id="@+id/aboutMovieYear"
+        android:layout_below="@+id/aboutMovieTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="IMDb Rating: 10/10"
+        android:id="@+id/aboutMovieIMDbRating"
+        android:layout_below="@+id/aboutMovieDirector"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp" />
+
+</RelativeLayout>

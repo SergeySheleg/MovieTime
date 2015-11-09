@@ -19,10 +19,13 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+
+    public static TabActivity tabOne;
+    public static TabActivity tabTwo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,27 +49,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_add_movie) {
-            //Toast.makeText(this, "ADD", Toast.LENGTH_SHORT).show();
-            /*int size = MoviesDataBase.getInstance().getMovieListTwo().size();
-            Movie sample = new Movie("LOL", "1995", "FUCK", (float)4.5, "AAA-BBB", R.drawable.poster);
-            sample.setTitle("Movie " + size);
-            MoviesDataBase.getInstance().getMovieListTwo().add(size, sample);*/
             Intent intent = new Intent(this, AddMovieActivity.class);
             startActivity(intent);
-            //TwoFragment.movieListAdapter.notifyDataSetChanged();
             return true;
         }
 
@@ -74,8 +67,15 @@ public class MainActivity extends AppCompatActivity {
     }
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new TabActivity(), "ONE");
-        adapter.addFragment(new TabActivity(), "TWO");
+
+        tabOne = new TabActivity();
+        tabOne.setTabNumber(1);
+
+        tabTwo = new TabActivity();
+        tabTwo.setTabNumber(2);
+
+        adapter.addFragment(tabOne, "ONE");
+        adapter.addFragment(tabTwo, "TWO");
         viewPager.setAdapter(adapter);
     }
 

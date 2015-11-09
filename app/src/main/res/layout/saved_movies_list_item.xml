@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="120dp"
+        android:id="@+id/savedMoviePoster"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/no_poster"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Movie Title"
+        android:id="@+id/savedMovieTitle"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/savedMoviePoster" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="year"
+        android:id="@+id/savedMovieYear"
+        android:layout_below="@+id/savedMovieGenre"
+        android:layout_alignStart="@+id/savedMovieGenre"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Genre"
+        android:id="@+id/savedMovieGenre"
+        android:layout_below="@+id/savedMovieTitle"
+        android:layout_alignStart="@+id/savedMovieTitle"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="You: 5/5"
+        android:id="@+id/savedMovieUserRating"
+        android:layout_below="@+id/savedMovieTitle"
+        android:layout_alignStart="@+id/savedMovieIMDbRating" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="IMDb: 10/10 "
+        android:id="@+id/savedMovieIMDbRating"
+        android:layout_alignTop="@+id/savedMovieTitle"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="49dp" />
+</RelativeLayout>
