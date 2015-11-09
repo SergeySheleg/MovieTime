@@ -1,6 +1,8 @@
 package org.sergeysheleg.movietime;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -38,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        FoundedMovie.setNoPoster(BitmapFactory.decodeResource(getResources(), R.drawable.no_poster));
     }
 
     @Override
@@ -46,7 +50,28 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_add_movie) {
+            //Toast.makeText(this, "ADD", Toast.LENGTH_SHORT).show();
+            /*int size = MoviesDataBase.getInstance().getMovieListTwo().size();
+            Movie sample = new Movie("LOL", "1995", "FUCK", (float)4.5, "AAA-BBB", R.drawable.poster);
+            sample.setTitle("Movie " + size);
+            MoviesDataBase.getInstance().getMovieListTwo().add(size, sample);*/
+            Intent intent = new Intent(this, AddMovieActivity.class);
+            startActivity(intent);
+            //TwoFragment.movieListAdapter.notifyDataSetChanged();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new TabActivity(), "ONE");
