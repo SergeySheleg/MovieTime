@@ -1,7 +1,9 @@
 package org.sergeysheleg.movietime;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +25,13 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    public static TabOneActivity tabOne  = new TabOneActivity();;
-    public static TabTwoActivity tabTwo = new TabTwoActivity();
+    public static TabOneFragment tabOne  = new TabOneFragment();;
+    public static TabTwoFragment tabTwo = new TabTwoFragment();
+
+    public boolean isNetworkAvailable(final Context context) {
+        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +65,10 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_add_movie) {
+            if(!isNetworkAvailable(this)) {
+                Toast.makeText(this, "Error: Internet disabled", Toast.LENGTH_SHORT).show();
+                return false;
+            }
             Intent intent = new Intent(this, AddMovieActivity.class);
             startActivity(intent);
             return true;
@@ -66,9 +78,6 @@ public class MainActivity extends AppCompatActivity {
     }
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-
-        //tabOne.setTabNumber(1);
-        //tabTwo.setTabNumber(2);
 
         adapter.addFragment(tabOne, "ONE");
         adapter.addFragment(tabTwo, "TWO");

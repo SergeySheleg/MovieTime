@@ -19,7 +19,7 @@
         android:text="Movie Title"
         android:id="@+id/savedMovieTitle"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/savedMoviePoster" />
 
@@ -49,8 +49,9 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="You: 5/5"
         android:id="@+id/savedMovieUserRating"
-        android:layout_alignBottom="@+id/savedMovieYear"
-        android:layout_alignStart="@+id/savedMovieIMDbRating" />
+        android:layout_alignTop="@+id/savedMovieIMDbRating"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="60dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -58,7 +59,8 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="IMDb: 10/10 "
         android:id="@+id/savedMovieIMDbRating"
-        android:layout_alignBottom="@+id/savedMovieGenre"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="5dp" />
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/savedMovieYear"
+        android:layout_alignStart="@+id/savedMovieYear"
+        android:layout_marginTop="10dp" />
 </RelativeLayout>

@@ -16,7 +16,8 @@ public class OMDbAPI {
     }
 
     public ArrayList<FoundedMovie> searchMoviesByTitle(String movieTitle) {
-        String url = new String("http://www.omdbapi.com/?s=" + movieTitle + "&y=&plot=full&r=json&type=movie");
+        movieTitle = movieTitle.replace(' ', '+');
+        String url = new String("http://www.omdbapi.com/?s=" + movieTitle + "&plot=full&r=json&t=movie&t=series");
         DownloadHelper dh = new DownloadHelper().setType(DownloadHelper.Type.JSONObject);
         try {
             dh.execute(url).get();
@@ -30,17 +31,22 @@ public class OMDbAPI {
         try {
             jsonArray = dh.getJSONObject().getJSONArray("Search");
         } catch (JSONException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            jsonArray = null;
         }
 
-        ArrayList<FoundedMovie> movies = new ArrayList<FoundedMovie>();
-        for(int i = 0; i < jsonArray.length(); i++) {
-            try {
-                movies.add(new FoundedMovie(jsonArray.getJSONObject(i)));
-            } catch (JSONException e) {
-                e.printStackTrace();
+        ArrayList<FoundedMovie> movies = null;
+        if(jsonArray != null) {
+            movies = new ArrayList<FoundedMovie>();
+            for(int i = 0; i < jsonArray.length(); i++) {
+                try {
+                    movies.add(new FoundedMovie(jsonArray.getJSONObject(i)));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
+
         return movies;
     }
 }

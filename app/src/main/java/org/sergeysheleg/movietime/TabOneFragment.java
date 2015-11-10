@@ -11,7 +11,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class TabOneActivity extends Fragment {
+public class TabOneFragment extends Fragment {
     ListView movieListView;
     SavedMoviesListAdapter savedMoviesListAdapter;
 
@@ -21,7 +21,7 @@ public class TabOneActivity extends Fragment {
         this.tabNumber = tabNumber;
     }
 
-    public TabOneActivity() {}
+    public TabOneFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class TabOneActivity extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_tab_one, container, false);
+        return inflater.inflate(R.layout.fragment_tab_one, container, false);
     }
 
     @Override

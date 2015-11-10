@@ -1,8 +1,10 @@
 package org.sergeysheleg.movietime;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +32,7 @@ public class AddMovieActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_movie);
+
         ad = new AlertDialog.Builder(this);
         ad.setTitle("Add movie");
 
@@ -48,8 +51,13 @@ public class AddMovieActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 movies = OMDbAPI.getInstance().searchMoviesByTitle(editText.getText().toString());
-                listAdapter.setMovies(movies);
-                //listAdapter.notifyDataSetChanged();
+                if(movies == null) {
+                    Toast.makeText(v.getContext(), "Movies not found", Toast.LENGTH_SHORT).show();
+                } else {
+                    listAdapter.setMovies(movies);
+                    listAdapter.notifyDataSetChanged();
+                    Toast.makeText(v.getContext(), "Founded " + movies.size() + " movies", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
