@@ -1,6 +1,5 @@
 package org.sergeysheleg.movietime;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -23,9 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    public static TabActivity tabOne;
-    public static TabActivity tabTwo;
-
+    public static TabOneActivity tabOne  = new TabOneActivity();;
+    public static TabTwoActivity tabTwo = new TabTwoActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         FoundedMovie.setNoPoster(BitmapFactory.decodeResource(getResources(), R.drawable.no_poster));
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -68,11 +67,8 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        tabOne = new TabActivity();
-        tabOne.setTabNumber(1);
-
-        tabTwo = new TabActivity();
-        tabTwo.setTabNumber(2);
+        //tabOne.setTabNumber(1);
+        //tabTwo.setTabNumber(2);
 
         adapter.addFragment(tabOne, "ONE");
         adapter.addFragment(tabTwo, "TWO");

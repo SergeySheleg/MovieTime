@@ -49,7 +49,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="You: 5/5"
         android:id="@+id/savedMovieUserRating"
-        android:layout_below="@+id/savedMovieTitle"
+        android:layout_alignBottom="@+id/savedMovieYear"
         android:layout_alignStart="@+id/savedMovieIMDbRating" />
 
     <TextView
@@ -58,7 +58,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="IMDb: 10/10 "
         android:id="@+id/savedMovieIMDbRating"
-        android:layout_alignTop="@+id/savedMovieTitle"
+        android:layout_alignBottom="@+id/savedMovieGenre"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="49dp" />
+        android:layout_marginRight="5dp" />
 </RelativeLayout>

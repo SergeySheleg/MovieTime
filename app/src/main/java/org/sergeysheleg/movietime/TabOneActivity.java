@@ -11,19 +11,17 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class TabActivity extends Fragment {
-    public ArrayList<SavedMovie> movies = new ArrayList<SavedMovie>();
-
+public class TabOneActivity extends Fragment {
     ListView movieListView;
     SavedMoviesListAdapter savedMoviesListAdapter;
 
-    private int tabNumber = 0;
+    private int tabNumber = 1;
 
     public void setTabNumber(int tabNumber) {
         this.tabNumber = tabNumber;
     }
 
-    public TabActivity() {}
+    public TabOneActivity() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,16 +29,23 @@ public class TabActivity extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        savedMoviesListAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_tab, container, false);
+        return inflater.inflate(R.layout.activity_tab_one, container, false);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        movieListView = (ListView) getActivity().findViewById(R.id.savedMoviesListView);
-        savedMoviesListAdapter = new SavedMoviesListAdapter(getActivity(), movies);
+        movieListView = (ListView) getActivity().findViewById(R.id.savedMoviesListViewTabOne);
+        savedMoviesListAdapter = new SavedMoviesListAdapter(getActivity(), new ArrayList<SavedMovie>());
         movieListView.setAdapter(savedMoviesListAdapter);
+
         movieListView.setOnItemClickListener(
             new AdapterView.OnItemClickListener() {
                 @Override

@@ -23,11 +23,11 @@ public class AboutMovieActivity extends AppCompatActivity {
             } break;
 
             case 1: {
-                movie = MainActivity.tabOne.movies.get(position);
+                movie = MainActivity.tabOne.savedMoviesListAdapter.movies.get(position);
             } break;
 
             case 2: {
-                movie = MainActivity.tabTwo.movies.get(position);
+                movie = MainActivity.tabTwo.savedMoviesListAdapter.movies.get(position);
             } break;
 
             default: return;

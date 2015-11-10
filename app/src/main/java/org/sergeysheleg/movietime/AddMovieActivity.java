@@ -1,5 +1,7 @@
 package org.sergeysheleg.movietime;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -10,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -21,10 +24,14 @@ public class AddMovieActivity extends AppCompatActivity {
     private FoundedMoviesListAdapter listAdapter = null;
     public static ArrayList<FoundedMovie> movies = null;
 
+    AlertDialog.Builder ad;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_movie);
+        ad = new AlertDialog.Builder(this);
+        ad.setTitle("Add movie");
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -42,20 +49,42 @@ public class AddMovieActivity extends AppCompatActivity {
             public void onClick(View v) {
                 movies = OMDbAPI.getInstance().searchMoviesByTitle(editText.getText().toString());
                 listAdapter.setMovies(movies);
-                listAdapter.notifyDataSetChanged();
+                //listAdapter.notifyDataSetChanged();
             }
         });
 
         listView.setOnItemClickListener(
-        new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(view.getContext(), AboutMovieActivity.class);
-                intent.putExtra("position", position);
-                intent.putExtra("where", 0);
-                startActivity(intent);
-            }
-        });
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(view.getContext(), AboutMovieActivity.class);
+                        intent.putExtra("position", position);
+                        intent.putExtra("where", 0);
+                        startActivity(intent);
+                    }
+                });
+
+        listView.setOnItemLongClickListener(
+                new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> parent, final View view, final int position, long id) {
+                        ad.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int arg1) {
+                                SavedMovie m = new SavedMovie(movies.get(position));
+
+                                MainActivity.tabOne.savedMoviesListAdapter.movies.add(m);
+                                //MainActivity.tabOne.savedMoviesListAdapter.notifyDataSetChanged();
+                            }
+                        });
+                        ad.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int arg1) {
+                            }
+                        });
+                        ad.show();
+                        return false;
+                    }
+                });
+
 
     }
 }
