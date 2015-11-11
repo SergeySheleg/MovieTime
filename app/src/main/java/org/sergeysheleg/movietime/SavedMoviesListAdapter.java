@@ -50,7 +50,7 @@ public class SavedMoviesListAdapter extends BaseAdapter {
         ((TextView) view.findViewById(R.id.savedMovieGenre)).setText(movie.getGenre());
         ((TextView) view.findViewById(R.id.savedMovieYear)).setText(movie.getYear());
         ((TextView) view.findViewById(R.id.savedMovieIMDbRating)).setText(movie.getIMDbRating());
-        ((TextView) view.findViewById(R.id.savedMovieUserRating)).setText("Your: " + String.valueOf(movie.getUserRating()));
+        ((TextView) view.findViewById(R.id.savedMovieUserRating)).setText("Your: " + String.valueOf(movie.getUserRating()) + "/5");
         ((ImageView) view.findViewById(R.id.savedMoviePoster)).setImageBitmap(movie.getPosterBitmap());
         return view;
     }

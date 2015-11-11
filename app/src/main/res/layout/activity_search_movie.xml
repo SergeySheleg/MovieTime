@@ -26,14 +26,16 @@
                     android:layout_height="fill_parent"
                     android:id="@+id/searchMovieTitle"
                     android:hint="Title to search"
+                    android:singleLine="true"
                     android:layout_weight="1" />
 
                 <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="fill_parent"
                     android:src="@drawable/ic_search"
                     android:id="@+id/searchMovieButton"
-                    android:layout_gravity="right" />
+                    android:layout_gravity="right"
+                    android:background="@android:color/transparent" />
             </LinearLayout>
 
         </android.support.v7.widget.Toolbar>
@@ -41,7 +43,12 @@
 
     <ListView
         android:id="@+id/foundedMoviesListView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:scrollingCache="true"
+        android:smoothScrollbar="true"
+        android:stackFromBottom="true"
+        android:layout_marginTop="55dp"/>
 </android.support.design.widget.CoordinatorLayout>

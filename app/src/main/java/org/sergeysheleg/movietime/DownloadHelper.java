@@ -93,7 +93,7 @@ public class DownloadHelper extends AsyncTask<String, Void, Boolean> {
     }
 
     private String toString(InputStream inputStream, int length) throws IOException, UnsupportedEncodingException {
-        Reader reader = null;
+        Reader reader;
         reader = new InputStreamReader(inputStream, "UTF-8");
         char[] buffer = new char[length];
         reader.read(buffer);

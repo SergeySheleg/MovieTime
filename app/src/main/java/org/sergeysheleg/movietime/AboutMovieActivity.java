@@ -7,6 +7,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class AboutMovieActivity extends AppCompatActivity {
+    SavedMovie movie = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,10 +17,9 @@ public class AboutMovieActivity extends AppCompatActivity {
         int position = getIntent().getIntExtra("position", 0);
         int fromWhere = getIntent().getIntExtra("where", 0);
 
-        SavedMovie movie = null;
         switch(fromWhere) {
             case 0: {
-                movie = new SavedMovie(AddMovieActivity.movies.get(position));
+                movie = new SavedMovie(SearchMovieActivity.movies.get(position));
             } break;
 
             case 1: {
@@ -60,8 +60,18 @@ public class AboutMovieActivity extends AppCompatActivity {
 
         userRatingBar = (RatingBar) this.findViewById(R.id.aboutMovieUserRating);
         userRatingBar.setRating(movie.getUserRating());
+
         if(fromWhere == 0) {
             userRatingBar.setEnabled(false);
+        } else {
+            userRatingBar.setOnRatingBarChangeListener(
+                new RatingBar.OnRatingBarChangeListener() {
+                    @Override
+                    public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                        movie.setUserRating(rating);
+                    }
+                }
+            );
         }
     }
 }

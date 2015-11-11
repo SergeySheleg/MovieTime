@@ -9,7 +9,7 @@ import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 
-public class SavedMovie /*implements Parcelable*/ {
+public class SavedMovie {
     private String _title = null;
     private String _year = null;
     private String _imdbID = null;
@@ -48,17 +48,6 @@ public class SavedMovie /*implements Parcelable*/ {
         }
     }
 
-    private SavedMovie(Parcel parcel) {
-        this._title = parcel.readString();
-        this._year  = parcel.readString();
-        this._imdbID  = parcel.readString();
-        this._genre = parcel.readString();
-        this._director = parcel.readString();
-        this._plot  = parcel.readString();
-        this._imdbRating  = parcel.readString();
-        this._imdbRating  = parcel.readString();
-        this._posterBitmap = Bitmap.CREATOR.createFromParcel(parcel);
-    }
     public String getDirector() {
         return _director;
     }
@@ -98,35 +87,4 @@ public class SavedMovie /*implements Parcelable*/ {
     public void setUserRating(float userRating) {
         this._userRating = userRating;
     }
-
-    /*@Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(_title);
-        dest.writeString(_year);
-        dest.writeString(_imdbID);
-        dest.writeString(_genre);
-        dest.writeString(_director);
-        dest.writeString(_plot);
-        dest.writeString(_imdbRating);
-        dest.writeString(_userRating);
-        _posterBitmap.writeToParcel(dest, 0);
-        dest.setDataPosition(0);
-    }
-
-    public static final Parcelable.Creator<SavedMovie> CREATOR = new Parcelable.Creator<SavedMovie>() {
-        @Override
-        public SavedMovie createFromParcel(Parcel source) {
-            return new SavedMovie(source);
-        }
-
-        @Override
-        public SavedMovie[] newArray(int size) {
-            return new SavedMovie[size];
-        }
-    };*/
 }

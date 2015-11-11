@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    public static TabOneFragment tabOne  = new TabOneFragment();;
-    public static TabTwoFragment tabTwo = new TabTwoFragment();
+    public static TabFragment tabOne = null;
+    public static TabFragment tabTwo = null;
 
     public boolean isNetworkAvailable(final Context context) {
         final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Error: Internet disabled", Toast.LENGTH_SHORT).show();
                 return false;
             }
-            Intent intent = new Intent(this, AddMovieActivity.class);
+            Intent intent = new Intent(this, SearchMovieActivity.class);
             startActivity(intent);
             return true;
         }
@@ -79,8 +79,21 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        adapter.addFragment(tabOne, "ONE");
-        adapter.addFragment(tabTwo, "TWO");
+        Bundle args = null;
+        tabOne = new TabFragment();
+        args = new Bundle();
+        args.putInt("tab_layout", R.layout.fragment_tab_one);
+        args.putInt("tab_number", 1);
+        tabOne.setArguments(args);
+        adapter.addFragment(tabOne, "Already watched");
+
+        tabTwo = new TabFragment();
+        args = new Bundle();
+        args.putInt("tab_layout", R.layout.fragment_tab_two);
+        args.putInt("tab_number", 2);
+        tabTwo.setArguments(args);
+        adapter.addFragment(tabTwo, "Want to watch");
+
         viewPager.setAdapter(adapter);
     }
 

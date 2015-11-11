@@ -6,7 +6,7 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/savedMoviesListViewTabTwo"
+        android:id="@+id/savedMoviesListView"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         tools:listitem="@layout/saved_movies_list_item"

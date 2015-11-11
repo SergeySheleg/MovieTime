@@ -1,12 +1,9 @@
 package org.sergeysheleg.movietime;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -18,7 +15,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class AddMovieActivity extends AppCompatActivity {
+public class SearchMovieActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private ListView listView = null;
     private EditText editText = null;
@@ -31,7 +28,7 @@ public class AddMovieActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_movie);
+        setContentView(R.layout.activity_search_movie);
 
         ad = new AlertDialog.Builder(this);
         ad.setTitle("Add movie");
@@ -76,23 +73,25 @@ public class AddMovieActivity extends AppCompatActivity {
                 new AdapterView.OnItemLongClickListener() {
                     @Override
                     public boolean onItemLongClick(AdapterView<?> parent, final View view, final int position, long id) {
-                        ad.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int arg1) {
+                        ad.setPositiveButton("Want to watch", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
                                 SavedMovie m = new SavedMovie(movies.get(position));
+                                MainActivity.tabTwo.savedMoviesListAdapter.movies.add(m);
+                            }
+                        });
 
+                        ad.setNegativeButton("Already watched", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                SavedMovie m = new SavedMovie(movies.get(position));
                                 MainActivity.tabOne.savedMoviesListAdapter.movies.add(m);
-                                //MainActivity.tabOne.savedMoviesListAdapter.notifyDataSetChanged();
                             }
                         });
-                        ad.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int arg1) {
-                            }
-                        });
+
                         ad.show();
-                        return false;
+                        return true;
                     }
                 });
-
-
     }
 }
