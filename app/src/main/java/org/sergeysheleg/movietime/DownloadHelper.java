@@ -120,4 +120,3 @@ public class DownloadHelper extends AsyncTask<String, Void, Boolean> {
         return BitmapFactory.decodeByteArray(buffer.toByteArray(), 0, buffer.toByteArray().length);
     }
 }
-

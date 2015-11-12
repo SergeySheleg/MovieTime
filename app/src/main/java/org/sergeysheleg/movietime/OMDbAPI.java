@@ -31,7 +31,7 @@ public class OMDbAPI {
         try {
             jsonArray = dh.getJSONObject().getJSONArray("Search");
         } catch (JSONException e) {
-            //e.printStackTrace();
+            e.printStackTrace();
             jsonArray = null;
         }
 

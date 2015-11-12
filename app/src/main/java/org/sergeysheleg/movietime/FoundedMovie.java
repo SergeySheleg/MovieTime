@@ -16,14 +16,14 @@ public class FoundedMovie {
     private Bitmap _posterBitmap = null;
     private String _posterURL = null;
 
-    private static Bitmap _noPoster = null;
+    public static Bitmap _noPoster = null;
 
     public FoundedMovie(final JSONObject object) throws JSONException {
         _title = object.getString("Title");
         _year = object.getString("Year");
         _imdbID = object.getString("imdbID");
         _posterURL = object.getString("Poster");
-        if( !(_posterURL == null || _posterURL.isEmpty() || _posterURL.equals("N/A")) ) {
+        /*if( !(_posterURL == null || _posterURL.isEmpty() || _posterURL.equals("N/A")) ) {
             DownloadHelper dh = new DownloadHelper().setType(DownloadHelper.Type.Bitmap);
             try {
                 dh.execute(_posterURL).get();
@@ -35,7 +35,7 @@ public class FoundedMovie {
             }
         } else {
             _posterBitmap = _noPoster;
-        }
+        }*/
     }
 
     public static void setNoPoster(Bitmap _noPoster) {
@@ -46,6 +46,13 @@ public class FoundedMovie {
         return _title;
     }
 
+    public String getPosterURL() {
+        return _posterURL;
+    }
+
+    public void setPosterBitmap(Bitmap poster) {
+        _posterBitmap = poster;
+    }
     public String getYear() {
         return _year;
     }
