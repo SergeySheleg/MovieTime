@@ -1,4 +1,8 @@
 # MovieTime
+
+test plan : https://github.com/SergeySheleg/MovieTime/blob/Tests/app/test/TestPlan.pdf <br />
+test cases : https://github.com/SergeySheleg/MovieTime/blob/Tests/app/test/TestCase.xlsx <br />
+
 Требования к проекту<br />
 1. Введение<br />
 Мобильное приложение, менеджер ранее просмотренных и планируемых для просмотра фильмов.<br />
